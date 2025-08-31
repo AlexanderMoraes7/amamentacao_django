@@ -38,7 +38,7 @@
                     autocomplete='current-password'
                     required/>
                     <label for="{{ login_form.password.id_for_label }}">Digite sua senha</label>
-                    <i class='fa-solid fa-eye-slash eye' class='eye' id='eye' onclick='show_password()'></i>
+                    <i class='fa-solid fa-eye-slash eye' class='eye' id='eye'></i>
                 </div>
                 
                 {% if login_form.non_field_errors %}
@@ -62,23 +62,8 @@
                 <label>Não tem conta?</label>
                 <a href="{% url 'accounts' %}">Crie aqui</a>
             </div>
-
-            <script>
-                function show_password(){
-                    var name = document.getElementById("{{ login_form.password.id_for_label }}");
-                    if(name.type == 'password'){
-                        name.type = 'text'
-                        var eye = document.getElementById('eye');
-                        eye.className = 'fa-solid fa-eye';
-                    } else {
-                        name.type = 'password'
-                        var eye = document.getElementById('eye');
-                        eye.className = 'fa-solid fa-eye-slash';
-                    }
-                }
-            </script>
         </div>
     </body> 
 </html>
-
+<script src="{% static 'js/login.js' %}"></script>
 {% endblock  %} 

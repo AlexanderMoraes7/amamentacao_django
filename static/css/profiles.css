@@ -1,0 +1,51 @@
+.Profile_img{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.Profile_img img{
+    width: 15%;
+    padding-top: 3%;
+    object-fit: cover;
+    border-radius: 50%;
+    border-color: #0000FF;
+}
+
+.Upload-label:active {
+    opacity: 0.4;
+}
+
+.Upload-label{
+    cursor: pointer;
+    color: #0000FF;
+    font-weight: bold;
+    display: block; /* Coloca o texto abaixo da imagem */
+}
+
+input[type="file"] {
+    display: none; /* Esconde o input de arquivo original */
+}
+
+@media (max-width: 1500px) { /* shorter ou equal to 333 pixels*/
+.Profile_img img{
+    width: 27%;
+}
+}
+
+@media (max-width: 1000px) { /* shorter ou equal to 333 pixels*/
+.Profile_img img{
+    width: 37%;
+    padding-top: 7%;
+}
+}
+
+@media (max-width: 500px) { /* shorter ou equal to 333 pixels*/
+.Profile_img img{
+    width: 60%;
+    max-width: 60%;
+    padding-top: 10%;
+}
+}

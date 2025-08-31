@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-@login_required(redirect_field_name='login')
+@login_required(login_url='login')
 def feed_view(request):
     return render(
         request,

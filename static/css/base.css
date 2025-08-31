@@ -48,7 +48,7 @@ html, body {
 }
 
 .Top .Bell:active, .Top .Settings:active {
-    opacity: 0.7; /* to decrease the opacity when clicking */
+    opacity: 0.6; /* to decrease the opacity when clicking */
 }
 
 .Top .Bell {

@@ -4,7 +4,28 @@
 
 {% block title %}Perfil de Usuário{% endblock %}
 {% block profiles %}{% static 'system/icons8-user-64-white.png' %}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/profiles.css' %}">
+{% endblock %}
+
 
 {% block content %}
-    <!-- Conteúdo da página de configurações -->
+    <div class= 'Profile_img'>
+        {% if user.photo and user.photo.path_image %}
+            <img src="{{ user.photo.path_image.url }}" alt="Foto de Perfil">
+        {% else %}
+            <img src="{% static 'system/icons8-user_default-96.png' %}" alt="Foto de Perfil Padrão">
+        {% endif %}
+        <form method="post" enctype="multipart/form-data" id="photo-form">
+            {% csrf_token %}
+            <div>
+                <label for="id_path_image">
+                    <span class="Upload-label">Alterar foto</span>
+                </label>
+            </div>
+            <div class="Upload">
+                {{ form.path_image }}
+            </div>
+    </div>
+    <script src="{% static 'js/profile_upload.js' %}"></script>
 {% endblock %}

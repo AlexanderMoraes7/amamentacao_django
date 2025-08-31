@@ -25,6 +25,8 @@ from informations.views import informations_view
 from be_a_donor.views import be_a_donor_view
 from units.views import units_view
 from profiles.views import profiles_view
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,4 +40,4 @@ urlpatterns = [
     path('be_a_donor', be_a_donor_view, name='be_a_donor'),
     path('units', units_view, name='units'),
     path('profiles', profiles_view, name='profiles'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Para permitir o uso de imagens
