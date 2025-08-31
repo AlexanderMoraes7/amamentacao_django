@@ -1,0 +1,192 @@
+body {
+    background:linear-gradient(to right, #f67299,#772976);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    width: 95%;
+    max-width: 500px;
+    border-radius: 50%;
+    margin-top: 10%;
+    margin-left: 2%;
+}
+
+.Box {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 10px;
+    max-width: 600px;
+}
+
+.floating {
+    position: relative;
+    margin: 3% 3%;
+    padding: 0;
+}
+
+.floating input {
+    width: 100%;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border: none;
+    background-color: #fdcbe6;
+    border-radius: 50px;
+    outline: none;
+}
+
+.floating label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #999;
+    padding: 0 4px;
+    background: #fdcbe6;
+    transition: 0.2s ease all;
+    pointer-events: none;       /* it doesn't block the click on input */
+}  
+
+.floating input:focus + label,
+.floating input:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 10px;
+    font-size: 12px;
+    color: #333;
+    background: white;
+}  
+
+
+.Input {
+    display: flex;
+    box-sizing: border-box;
+    border: none;
+    background-color: #fdcbe6;
+    margin: 5%;
+    padding: 3%;
+    border-radius: 50px;
+}
+
+.Input input:focus-visible {
+    outline: none;
+}
+
+/* Chrome, Edge e Safari */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  /* it force the same background */
+    box-shadow: 0 0 0px 1000px #fdcbe6 inset !important;
+}
+
+/* Firefox */
+input:-moz-autofill {
+    box-shadow: 0 0 0px 1000px #fdcbe6 inset !important;
+}
+
+.Input input::selection {
+    background: #f67299;
+}
+
+.Input input {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+}
+
+.Input i {
+    color: #fff;
+    padding: 17px 10px 7px 10px;
+}
+
+.Text1 {
+    /* margin: 0 0 0 0; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.Text1 :hover {
+    cursor: pointer;
+}
+
+.Login button {
+    background-color: #b3097b;
+    border-radius: 50px;
+    color: #FFF;
+    max-width: 700px;
+    margin: 5%;
+    padding: 3%;
+    width: 90%;
+}
+
+.Login p {
+    color: #000;
+    text-align: center;
+    margin: 0;
+}
+
+.Login :hover {
+    cursor: pointer;
+}
+
+.Text2 {
+    display: flex;
+    flex-direction: row;
+    margin: 5% 0% 5% 0%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+@media (min-width: 333px) { /* bigger or equal to 333 pixels*/
+    body {
+        align-items: normal;
+    }
+
+    img {
+        max-width: 300px;
+        align-self: center;
+        margin-top: -2%;
+        margin-left: 0%;
+    }
+
+    .Box {
+        margin-top: 1%;
+        width: 95%;
+        max-width: 350px;
+        padding-top: 3%;
+        align-self: center;
+    }
+
+}
+
+@media (max-width: 333px) { /* shorter ou equal to 333 pixels*/
+    img {
+        width: 95%;
+        max-width: 95%;
+        border-radius: 50%;
+        margin-top: 0;
+        margin-left: 2%;
+    }
+
+    .Text1 {
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+        padding: 3% 0 3% 0;
+        margin: 10% 0% 10% 0%;
+        /* up | throw-to-left | down | throw-to-right*/
+    }
+
+    .Box {
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border-radius: 10px;
+        max-width: 500px;
+        margin: 10% 0;
+    }
+}

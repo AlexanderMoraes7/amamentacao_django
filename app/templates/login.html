@@ -1,0 +1,80 @@
+{% block content %}
+{% load i18n static %}
+<br><br>
+    <!DOCTYPE html>
+    <html lang='pt-br'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel='stylesheet' href="{% static 'css\login.css' %}">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'>
+        <title>Apoio á Amamentação</title>
+    </head> 
+    <body>
+        <img src="{% static 'system\mother_with_son.jpg' %}" alt='Mulher amamentando seu bebê'>
+        <div class='Box'>
+
+            <form method='POST' enctype='multipart/form-data'>
+                {% csrf_token %}
+
+                <div class='input floating'>
+                    {{ login_form.username.errors }}
+                    <input type="user"
+                    name="{{ login_form.username.html_name }}"
+                    id="{{ login_form.username.id_for_label }}"
+                    placeholder=' '
+                    autocomplete='username'
+                    autofocus
+                    required/>
+                    <label for="{{ login_form.username.id_for_label }}">Digite seu usuário</label>
+                </div>
+
+                <div class='input floating'>
+                    {{ login_form.password.errors }}
+                    <input type="password"
+                    name="{{ login_form.password.html_name }}"
+                    id="{{ login_form.password.id_for_label }}"
+                    placeholder=' '
+                    autocomplete='current-password'
+                    required/>
+                    <label for="{{ login_form.password.id_for_label }}">Digite sua senha</label>
+                    <i class='fa-solid fa-eye-slash eye' class='eye' id='eye' onclick='show_password()'></i>
+                </div>
+                
+                {% if login_form.non_field_errors %}
+                    <ul class="errorlist nonfield">
+                        {% for err in login_form.non_field_errors %}
+                            <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div class='Login'>
+                    <button type='submit' name='Login' value='Login'>Entrar</button>
+                </div>
+            </form>
+
+            <div class='Text2'>
+                <label>Não tem conta?</label>
+                <a href="{% url 'accounts' %}">Crie aqui</a>
+            </div>
+
+            <script>
+                function show_password(){
+                    var name = document.getElementById("{{ login_form.password.id_for_label }}");
+                    if(name.type == 'password'){
+                        name.type = 'text'
+                        var eye = document.getElementById('eye');
+                        eye.className = 'fa-solid fa-eye';
+                    } else {
+                        name.type = 'password'
+                        var eye = document.getElementById('eye');
+                        eye.className = 'fa-solid fa-eye-slash';
+                    }
+                }
+            </script>
+        </div>
+    </body> 
+</html>
+
+{% endblock  %} 

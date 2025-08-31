@@ -1,0 +1,28 @@
+[project]
+name = "amamentacao-django"
+version = "0.1.0"
+description = "Projeto de faculdade anteriormente desenvolvido em html, css, javascript e php que agora será programado em django"
+authors = [
+    {name = "Alex",email = "alexander97643@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13, <4.0"
+dependencies = [
+]
+
+[tool.poetry.group.dev.dependencies]
+django = "^5.2.5"
+python-decouple = "^3.8"
+taskipy = "^1.14.1"
+dj-database-url = "^3.0.1"
+
+[tool.taskipy.tasks]
+run = 'poetry run python manage.py runserver'
+test = 'python manage.py test'
+make = 'python manage.py makemigrations'
+migrate = 'python manage.py migrate'
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
