@@ -1,0 +1,44 @@
+{% load static ensure_overridden %}
+
+<!DOCTYPE html>
+<html lang='pt-br'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel='stylesheet' href="{% static 'css/base.css' %}">
+        {% block extra_css %}{% endblock %}
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css'>
+        <title>Suporte á Amamentação</title>
+    </head>
+    <body>
+        <div class='Top'>
+            <h1>{% block title %}{% ensure_overridden %}{% endblock %}</h1>
+            <button class='Bell'>
+                <img src="{% static 'system/icons8-bell-30.png' %}" alt='Notificações'>
+            </button>
+            <a class='Settings' href="{% url 'settings' %}">
+                <img src={% block settings %}{% static 'system/icons8-settings-30.png' %}{% endblock %} alt='Configurações'>
+            </a>
+        </div>
+        <main class="Container">
+            {% block content %}{% endblock  %}
+        </main>
+        <footer class="Bottom">
+            <a href="{% url 'informations' %}">
+                <img src="{% block informations %}{% static 'system/icons8-about-64.png' %}{% endblock %}" alt='Informações'>
+            </a>
+            <a href="{% url 'be_a_donor' %}">
+                <img src="{% block be_a_donor %}{% static 'system/icons8-love-64.png' %}{% endblock %}" alt='Seja uma doadora'>
+            </a>
+            <a href="{% url 'feed' %}">
+                <img src="{% block feed %}{% static 'system/icons8-home-64.png' %}{% endblock %}" alt='Feed'>
+            </a>
+            <a href="{% url 'units' %}">
+                <img src="{% block units %}{% static 'system/icons8-hospital-64.png' %}{% endblock %}" alt='Unidades de doação de leite'>
+            </a>
+            <a href="{% url 'profiles' %}">
+                <img src="{% block profiles %}{% static 'system/icons8-user-64.png' %}{% endblock %}" alt='Perfil de usuário'>
+            </a>
+        </footer>
+    </body>
+</html>

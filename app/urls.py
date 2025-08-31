@@ -18,10 +18,24 @@ from django.contrib import admin
 from django.urls import path
 from accounts.views import accounts_view
 from login.views import login_view, logout_view
+from account_recovery.views import account_recovery_view
+from feed.views import feed_view
+from settings.views import settings_view
+from informations.views import informations_view
+from be_a_donor.views import be_a_donor_view
+from units.views import units_view
+from profiles.views import profiles_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', accounts_view, name='accounts'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
+    path('account_recovery/', account_recovery_view, name='account_recovery'),
+    path('feed/', feed_view, name='feed'),
+    path('settings/', settings_view, name='settings'),
+    path('informations/', informations_view, name='informations'),
+    path('be_a_donor', be_a_donor_view, name='be_a_donor'),
+    path('units', units_view, name='units'),
+    path('profiles', profiles_view, name='profiles'),
 ]

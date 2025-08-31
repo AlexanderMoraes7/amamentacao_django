@@ -43,6 +43,13 @@ INSTALLED_APPS = [
     'app',
     'login',
     'accounts',
+    'account_recovery',
+    'feed',
+    'settings',
+    'informations',
+    'be_a_donor',
+    'units',
+    'profiles',
 ]
 
 MIDDLEWARE = [
