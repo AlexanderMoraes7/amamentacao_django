@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import os
 from django.db.models.signals import pre_delete, pre_save
 from django.dispatch.dispatcher import receiver
-from django.db.models.fields.files import ImageFieldFile # Importe isso
+from django.db.models.fields.files import ImageFieldFile
 
 
 # --- LÓGICA PARA EDITAR O NOME DA IMAGEM E EVIDAR NOMES DUPLICADOS
@@ -47,3 +47,10 @@ def photo_update(sender, instance : Photo, **kwargs):
         # Se o arquivo antigo existe e é diferente do novo, deleta o antigo.
         if old_photo and os.path.isfile(old_photo.path):
             os.remove(old_photo.path)
+
+class Address(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_address = models.TextField(null=True, blank=True)
+    
+    def __str__(self):
+        return self.user_address

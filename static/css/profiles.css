@@ -1,4 +1,4 @@
-.Profile_img{
+.Profile_img, .Profile_info{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,11 +7,13 @@
 }
 
 .Profile_img img{
-    width: 15%;
-    padding-top: 3%;
-    object-fit: cover;
+    margin-top: 2%;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
-    border-color: #0000FF;
+    overflow: hidden; /* Esconde qualquer parte da imagem que transbordar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra suave opcional */
+    /* border: 1px solid #000; Cor da Borda */
 }
 
 .Upload-label:active {
@@ -29,23 +31,82 @@ input[type="file"] {
     display: none; /* Esconde o input de arquivo original */
 }
 
-@media (max-width: 1500px) { /* shorter ou equal to 333 pixels*/
+@media (max-width: 1500px) { /* shorter ou equal to 15000 pixels*/
 .Profile_img img{
     width: 27%;
 }
 }
 
-@media (max-width: 1000px) { /* shorter ou equal to 333 pixels*/
+@media (max-width: 1000px) { /* shorter ou equal to 1000 pixels*/
 .Profile_img img{
     width: 37%;
     padding-top: 7%;
 }
 }
 
-@media (max-width: 500px) { /* shorter ou equal to 333 pixels*/
+@media (max-width: 500px) { /* shorter ou equal to 500 pixels*/
 .Profile_img img{
     width: 60%;
     max-width: 60%;
     padding-top: 10%;
 }
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Estilo principal para os campos de formulário */
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: none; /* Remove a borda */
+    background-color: #f2f2f2; /* Fundo cinza claro */
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+    resize: none; /* Desabilita o redimensionamento pelo usuário */
+}
+
+/* Estilo para quando os campos estão desabilitados */
+.form-group input:read-only,
+.form-group textarea:read-only {
+    background-color: #f2f2f2;
+    cursor: default; 
+    color: #333;
+}
+
+.form-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.form-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#edit-button {
+    background-color: #007bff;
+    color: white;
+}
+
+#save-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.hidden {
+    display: none;
 }

@@ -10,22 +10,44 @@
 
 
 {% block content %}
-    <div class= 'Profile_img'>
-        {% if user.photo and user.photo.path_image %}
-            <img src="{{ user.photo.path_image.url }}" alt="Foto de Perfil">
-        {% else %}
-            <img src="{% static 'system/icons8-user_default-96.png' %}" alt="Foto de Perfil Padrão">
-        {% endif %}
-        <form method="post" enctype="multipart/form-data" id="photo-form">
-            {% csrf_token %}
+    <form method="post" enctype="multipart/form-data" id="photo-form">
+        {% csrf_token %}
+        <div class= 'Profile_img'>
+            {% if user.photo and user.photo.path_image %}
+                <img src="{{ user.photo.path_image.url }}" alt="Foto de Perfil">
+            {% else %}
+                <img src="{% static 'system/icons8-user_default-96.png' %}" alt="Foto de Perfil Padrão">
+            {% endif %}
             <div>
                 <label for="id_path_image">
                     <span class="Upload-label">Alterar foto</span>
                 </label>
             </div>
-            <div class="Upload">
-                {{ form.path_image }}
+            {{ photo_form.path_image }}
+        </div>
+    </form>
+
+    <form method="post" enctype="multipart/form-data" id="profile-form">
+        {% csrf_token %}
+        <div class="Profile_info">
+            <div class="form-group">
+                <label for="id_username">Nome</label>
+                    {{ user_form.first_name }}
             </div>
-    </div>
+            <div class="form-group">
+                <label for="id_email">E-mail</label>
+                {{ user_form.email }}
+            </div>
+            <div class="form-group">
+                <label for="id_user_address">Endereço</label>
+                    {{ address_form.user_address }}
+            </div>
+            <div class="form-actions">
+                <button type="button" id="edit-button">Editar</button>
+                <button type="submit" id="save-button" class="hidden" name="update_profile">Salvar Alterações</button>
+            </div>
+        </div>
+    </form>
+    
     <script src="{% static 'js/profile_upload.js' %}"></script>
 {% endblock %}
