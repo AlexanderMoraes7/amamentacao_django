@@ -8,14 +8,14 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13, <4.0"
 dependencies = [
+    "django>=5.2.5",
+    "python-decouple>=3.8",
+    "dj-database-url>=3.0.1",
+    "pillow>=11.3.0",
 ]
 
 [tool.poetry.group.dev.dependencies]
-django = "^5.2.5"
-python-decouple = "^3.8"
 taskipy = "^1.14.1"
-dj-database-url = "^3.0.1"
-pillow = "^11.3.0"
 
 [tool.taskipy.tasks]
 run = 'poetry run python manage.py runserver'
@@ -23,6 +23,9 @@ test = 'python manage.py test'
 make = 'python manage.py makemigrations'
 migrate = 'python manage.py migrate'
 
+
+[tool.poetry]
+package-mode = false
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

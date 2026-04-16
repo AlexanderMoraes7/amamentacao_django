@@ -27,8 +27,10 @@ from units.views import units_view
 from profiles.views import profiles_view
 from django.conf.urls.static import static
 from django.conf import settings
+from django.shortcuts import redirect
 
 urlpatterns = [
+    path('', lambda request: redirect('login'), name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', accounts_view, name='accounts'),
     path('login/', login_view, name='login'),
@@ -37,7 +39,7 @@ urlpatterns = [
     path('feed/', feed_view, name='feed'),
     path('settings/', settings_view, name='settings'),
     path('informations/', informations_view, name='informations'),
-    path('be_a_donor', be_a_donor_view, name='be_a_donor'),
-    path('units', units_view, name='units'),
-    path('profiles', profiles_view, name='profiles'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Para permitir o uso de imagens
+    path('be_a_donor/', be_a_donor_view, name='be_a_donor'),
+    path('units/', units_view, name='units'),
+    path('profiles/', profiles_view, name='profiles'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

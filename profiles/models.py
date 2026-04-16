@@ -6,7 +6,7 @@ from django.dispatch.dispatcher import receiver
 from django.db.models.fields.files import ImageFieldFile
 
 
-# --- LÓGICA PARA EDITAR O NOME DA IMAGEM E EVIDAR NOMES DUPLICADOS
+# --- LÓGICA PARA EDITAR O NOME DA IMAGEM E EVITAR NOMES DUPLICADOS
 def user_directory_path(instance, filename):
     return 'profiles/user_{0}_{1}'.format(instance.user.id, filename)
 
@@ -21,8 +21,7 @@ class Photo(models.Model):
 # Signal para deletar o arquivo quando o objeto Photo é deletado
 @receiver(pre_delete, sender=Photo)
 def photo_delete(sender, instance : Photo, **kwargs):
-    path_image: ImageFieldFile = instance.path_image # Dica de tipo para a variável
-    # se ele tiver um arquivo associado será deletado
+    path_image: ImageFieldFile = instance.path_image
     if path_image:
         if os.path.isfile(instance.path_image.path):
             os.remove(instance.path_image.path)
@@ -38,7 +37,6 @@ def photo_update(sender, instance : Photo, **kwargs):
         # Busca o objeto antigo no banco de dados
         old_photo = sender.objects.get(pk=instance.pk).path_image
     except sender.DoesNotExist:
-        # Se por algum motivo o objeto antigo não existir, sai da função.
         return False
 
     # Compara o arquivo antigo com o novo
@@ -53,4 +51,4 @@ class Address(models.Model):
     user_address = models.TextField(null=True, blank=True)
     
     def __str__(self):
-        return self.user_address
+        return self.user_address or f'Endereço de {self.user.username}'

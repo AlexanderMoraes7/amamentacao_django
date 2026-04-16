@@ -5,11 +5,15 @@ from .models import Photo, Address
 from .forms import PhotoForm, ProfilesForm, AddressForm
 
 
-@login_required(redirect_field_name='login')
+@login_required(login_url='login')
 def profiles_view(request : HttpRequest):
     photo_obj, _ = Photo.objects.get_or_create(user=request.user)
     address_obj, _ = Address.objects.get_or_create(user=request.user)
     user_obj = request.user
+
+    photo_form = PhotoForm(instance=photo_obj)
+    user_form = ProfilesForm(instance=user_obj)
+    address_form = AddressForm(instance=address_obj)
 
     if request.method == 'POST':
         # O campo 'path_image' só estará em request.FILES se for o form da foto
@@ -18,19 +22,15 @@ def profiles_view(request : HttpRequest):
             if photo_form.is_valid():
                 photo_form.save()
                 return redirect('profiles')
-            
+
         # Verifica se o formulário de PERFIL foi submetido (pelo botão 'update_profile')
-        if 'update_profile' in request.POST:
+        elif 'update_profile' in request.POST:
             user_form = ProfilesForm(request.POST, instance=user_obj)
             address_form = AddressForm(request.POST, instance=address_obj)
             if user_form.is_valid() and address_form.is_valid():
                 user_form.save()
                 address_form.save()
                 return redirect('profiles')
-    else:
-        photo_form = PhotoForm(instance=photo_obj)
-        user_form = ProfilesForm(instance=user_obj)
-        address_form = AddressForm(instance=address_obj)
 
     context = {
         'photo_form': photo_form,
